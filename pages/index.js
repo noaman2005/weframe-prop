@@ -31,9 +31,10 @@ export default function Home() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 p-4 sm:p-6">
+          <main className="flex-1 px-4 sm:px-6">
             {/* Grid of Cards - 4 per row on large screens, 2 on medium, 1 on small */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+
               <ArticleCard
                 imageSrc="/images/1.png"
                 title="How 7 lines of code turned into a $36B empire"
