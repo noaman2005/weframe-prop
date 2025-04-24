@@ -1,9 +1,13 @@
 // components/Sidebar.js
 import {
   FileText, User, Users, Monitor, BarChart,
-  PlayCircle, Sliders, Bell, CreditCard, Settings, Headphones,
+  PlayCircle, Sliders, Bell, CreditCard,Menu,X,Settings, Headphones,
   SettingsIcon
 } from 'lucide-react';
+import { useState } from 'react';
+
+
+
 
 // Custom Home icon component using provided SVG
 function HomeIcon({ size = 20 }) {
@@ -312,11 +316,11 @@ function Settings1Icon({ size = 24 }) {
     </svg>
   );
 }
-
+// Optional: You can use these icons for the toggle button
 
 const items = [
   { icon: <HomeIcon size={20} />, label: 'Dashboard' },
-  { icon: <ContentIcon size={20} />, label: 'Content',active: true},
+  { icon: <ContentIcon size={20} />, label: 'Content', active: true },
   { icon: <ProfileIcon size={20} />, label: 'User' },
   { icon: <TasksIcon size={20} />, label: 'Task' },
   { icon: <AppIcon size={20} />, label: 'App/Web' },
@@ -329,28 +333,56 @@ const items = [
 ];
 
 export default function Sidebar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className=' border-r bg-white'>
-    <div className="w-[233px] p-3 flex flex-col mt-16 gap-8 border-r font-['Urbanist'] text-[14px]">
-      <div className="flex flex-col gap-3">
-        {items.map((item, idx) => (
-          <div
-            key={idx}
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg 
-              ${item.active ? 'bg-[#1e154e] text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-          >
-            {item.icon}
-            <span className="text-sm">{item.label}</span>
+    <>
+      {/* Mobile Toggle Button */}
+      <button
+        className="fixed top-4 left-4 z-50 bg-white shadow p-2 rounded-full md:hidden"
+        onClick={() => setOpen(!open)}
+      >
+        {open ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Overlay for mobile (optional) */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/30 z-30 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed md:static top-0 left-0 h-full bg-[#f4f4fa] border-r transition-transform duration-300 z-40 w-[200px] p-3 pt-20 md:pt-16 font-['Urbanist'] text-sm flex flex-col gap-8
+          ${open ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
+      >
+        {/* Navigation Items */}
+        <div className="flex flex-col gap-3">
+          {items.map((item, idx) => (
+            <div
+              key={idx}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer ${
+                item.active
+                  ? 'bg-[#1e154e] text-white'
+                  : 'text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Support Option */}
+        <div className="mt-auto">
+          <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#eaeaff] text-black">
+            <Headphones size={22} />
+            <span>Contact Support</span>
           </div>
-        ))}
-      </div>
-      <div className="">
-        <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#eaeaff] text-black">
-          <Headphones size={22} />
-          <span className="text-sm">Contact Support</span>
         </div>
       </div>
-    </div>
-    </div>
+    </>
   );
 }

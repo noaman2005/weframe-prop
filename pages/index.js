@@ -18,7 +18,7 @@ export default function Home() {
         <Sidebar />
 
         {/* Main Content Area */}
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 ">
           {/* TopBar */}
           <TopBar />
 
@@ -31,10 +31,8 @@ export default function Home() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 p-6">
-            
-
-            {/* Grid of Cards - 4 per row */}
+          <main className="flex-1 p-4 sm:p-6">
+            {/* Grid of Cards - 4 per row on large screens, 2 on medium, 1 on small */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               <ArticleCard
                 imageSrc="/images/1.png"
@@ -86,8 +84,7 @@ export default function Home() {
               />
               <ArticleCard
                 imageSrc="/images/7.png"
-                title="Teknion wins Gold at 2022 
-International Design Awards"
+                title="Teknion wins Gold at 2022 International Design Awards"
                 category="Culture"
                 date="2 Dec 2022"
                 status="Created"
@@ -95,8 +92,7 @@ International Design Awards"
               />
               <ArticleCard
                 imageSrc="/images/8.png"
-                title="How 7 lines code turned into
-$36 Billion Empire"
+                title="How 7 lines code turned into $36 Billion Empire"
                 category="Culture"
                 date="2 Dec 2022"
                 status="Created"
